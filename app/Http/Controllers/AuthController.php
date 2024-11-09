@@ -39,15 +39,6 @@ class AuthController extends Controller
         $user = User::where('username', $username)
                         ->where('deleted_at', null)
                         ->first();
-
-        if ($user) {
-            // Usuário existe
-            echo "Usuário encontrado!";
-        } else {
-            // Usuário não existe
-            echo "Usuário não encontrado!";
-        }
-//        print_r($user);
     }
 
     public function logout()
