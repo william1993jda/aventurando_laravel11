@@ -1,15 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\AuthController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/login', [AuthController::class, 'login']);
 
-Route::get('/teste', function () {
-    return 'Olá, estou testando depois de horas essa porra!';
-});
+Route::post('/loginSubmit', [AuthController::class, 'loginSubmit']);
 
-Route::get('/about', function () {
-    return 'About us';
-});
+//Route::post('/logout', [AuthController::class, 'logout']);
