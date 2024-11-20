@@ -32,17 +32,41 @@ class AuthController extends Controller
             ]
         );
 
-        $username = $request->input('text_username');
+        $username = $request->input('text_username') ;
         $password = $request->input('text_password');
 
 //        Check if user exists
         $user = User::where('username', $username)
-                        ->where('deleted_at', null)
-                        ->first();
+            ->where('deleted_at', NULL)
+            ->first();
+
+        if (!$user || !password_verify($password, $user->password)) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with('loginError', 'E-mail ou senha incorretos.');
+        }
+
+//        Update last login
+        $user->last_login = date('Y-m-d H:i:s');
+        $user->save();
+
+//        login user
+        session([
+            'user' => [
+                'id' => $user->id,
+                'username' => $user->username
+            ]
+        ]);
+
+        return redirect('/');
     }
+
 
     public function logout()
     {
-        return view('logout');
+//        Logout from the application
+        session()->forget('user');
+        return redirect()->to('/login');
     }
 }

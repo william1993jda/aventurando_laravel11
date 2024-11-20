@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Model
 {
 
-    public static function where(string $string, mixed $username)
-    {
-    }
+//    public static function where(string $string, mixed $username)
+//    {
+//    }
 }
