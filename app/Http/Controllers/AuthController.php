@@ -32,7 +32,7 @@ class AuthController extends Controller
             ]
         );
 
-        $username = $request->input('text_username') ;
+        $username = $request->input('text_username');
         $password = $request->input('text_password');
 
 //        Check if user exists
@@ -59,7 +59,7 @@ class AuthController extends Controller
             ]
         ]);
 
-        return redirect('/');
+        return redirect()->to('/');
     }
 
 
